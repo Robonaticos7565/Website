@@ -22,5 +22,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+body {
     font-family: Roboto Bold, sans-serif;
+    background: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
 }
