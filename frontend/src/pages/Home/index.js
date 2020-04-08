@@ -1,12 +1,33 @@
 import React, { useEffect, Component } from 'react';
+import { Link } from 'react-router-dom';
 
 /** Components */
-import { Window, Container, Content, BISectionContainer, BISectionContent } from '../../components/Base'
-import { Title } from '../../components/Text';
+import {
+    Window,
+    Container,
+    Content,
+    BISectionContainer,
+    BISectionContent,
+    Mask,
+    Section,
+    TextDiv,
+    OneImageDiv,
+    Image
+} from '../../components/Base';
+
+import { 
+    Desc,
+    SubDesc, 
+    Underline,
+} from '../../components/Text';
+
+import { Button1 } from "../../components/Button";
+
 import { Menu } from '../../components/Menu';
 
 /** Images */
 import Team from '../../assets/images/Team.jpeg';
+import TeamMember from '../../assets/images/TeamMember.png'
 
 export default class Home extends Component {
 
@@ -32,7 +53,35 @@ export default class Home extends Component {
                                 <div className="mouse"> <div className="mouseContent" /> </div>
                             </BISectionContent>
                         </BISectionContainer>
-                        
+                        <Mask />
+                        <Section>
+                            <TextDiv
+                                width='50%'
+                                flexDirection='column'
+                                justifyContent='space-around'
+                                alignItems='flex-start'
+                            >
+                                <SubDesc>O que é ser Robonático?</SubDesc>
+                                <Desc>Ser Robonático é <Underline>aprender</Underline>, <Underline>aplicar</Underline> e <Underline>divulgar</Underline> conhecimento, sempre de forma <Underline>divertida</Underline>!</Desc>
+                                <SubDesc>Venha conhecer mais sobre nós!</SubDesc>
+                                <Button1
+                                    fontSize='25px'
+                                >
+                                    <Link>Saiba mais!</Link>
+                                </Button1>
+                            </TextDiv>
+                            <OneImageDiv
+                                width='50%'
+                            >
+                                <Image 
+                                    large='500px'
+                                    medium
+                                    small
+                                    src={TeamMember} 
+                                    alt="Membro do time"
+                                />
+                            </OneImageDiv>
+                        </Section>
                     </Content>
                 </Container>
             </Window>
