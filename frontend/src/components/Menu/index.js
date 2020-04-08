@@ -1,13 +1,32 @@
 
 import React, { Component } from 'react';
+import { FiInstagram, FiYoutube, FiFacebook } from 'react-icons/fi'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { Link } from 'react-router-dom';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import colors, { hex2rgb } from '../../res/colors';
 
 import LogoRobonáticos from '../../assets/images/RobonaticosLogo.png'
+
+const backFadeOut = keyframes`
+    from {
+        background: rgba(0, 0, 0, .23);
+    }
+    to {
+        background: rgba(0, 0, 0, 0);
+    }
+`;
+
+const backFadeIn = keyframes`
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, .23)}
+    }
+`;
 
 const NavContainer = styled.header`
     position: fixed;
@@ -16,6 +35,24 @@ const NavContainer = styled.header`
     width: 7rem;
     height: 100vh;
     z-index: 1;
+
+    .backOpacity {
+        width: 0;
+        height: 100%;
+        animation: ${backFadeOut} 1s;
+        top: 0;
+        left: 0;
+        position: fixed;
+        z-index: -1;
+        cursor: pointer;
+    }
+
+    .backOpacity.active {
+        width: 100vw;
+        background: rgba(0, 0, 0, .23);
+        animation-delay: 1s;
+        animation: ${backFadeIn} 1s;
+    }
 `;
 const NavBar = styled.div`
     width: 100%;
@@ -25,15 +62,15 @@ const NavBar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: ${(props) => props.isTop ? '0 -5px 20px rgba(0,0,0,.25)' : ''};
+    box-shadow: ${(props) => !props.isTop ? !props.active ? '0 -5px 20px rgba(0,0,0,.15)' : props.active ? '' : '0 -5px 20px rgba(0,0,0,.15)' : ''};
     background: ${(props) => props.isTop ? 'transparent' : colors.white};
     transition: all .3s;
+    z-index: 2;
 
     img {
         width: 5.5rem;
         margin: .5rem auto auto auto;
-        transition: all .5s;
-        z-index: 2;
+        transition: all .7s;
     }
 
     img.active {
@@ -69,7 +106,6 @@ const NavBar = styled.div`
                 border-radius: 2px;
                 background-color: ${(props) => props.isTop ? colors.white : colors.gray33};
                 transition: all .3s;
-                display: ${(props) => !props.active ? 'block' : 'none'};
             }
 
             .burguerLine:nth-child(2) {
@@ -106,12 +142,13 @@ const NavBar = styled.div`
 const NavBox = styled.div`
     width: 650px;
     height: 100%;
-    background: #F0F0F0;
+    background: ${colors.white};
     position: fixed;
     left: 0;
     top: 0;
     margin-left: 7rem;
-    transition: all .3s;
+    transform: ${(props) => !props.active ? 'translateX(calc(-100% - 7rem))' : 'translateX(0)'};
+    transition: all .7s;
 `;
 const NavContent = styled.div`
     width: 100%;
@@ -161,6 +198,51 @@ const NavContent = styled.div`
             }
         }
     }
+
+    .socialContainer {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+
+        .socialContent {
+            width: 100%;
+            padding: 10px 0;
+
+            ul {
+                width: 100%;
+                display: flex;
+                justify-content:flex-start;
+                align-items: center;
+
+                li{
+                    margin-left: 20px;
+
+                    a {
+                        color: ${colors.gray33};
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .icon {
+                            size: 40px
+                        }
+
+                        p {
+                            font-family: 'Roboto Medium', sans-serif;
+                            font-size: 1.2rem;
+                            margin-left: 4px;
+                        }
+                    }
+                }
+
+                li:nth-child(1) {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
 `;
 
 export class Menu extends Component {
@@ -206,12 +288,18 @@ export class Menu extends Component {
     render() {
         return (
             <NavContainer >
+                <div 
+                    className={this.state.active ? 'backOpacity active' : 'backOpacity'} 
+                    active={this.state.active} 
+                    onClick={() => this.setState({ active: !this.state.active })}
+                />
                 <NavBar
+                    active={this.state.active}
                     isTop={this.state.isTop}>
                     <img
                         className={this.state.active ? 'active' : ''}
-                        src={LogoRobonáticos} 
-                        alt="Robonáricos 7565" 
+                        src={LogoRobonáticos}
+                        alt="Robonáricos 7565"
                     />
                     <div
                         className="menuContainer"
@@ -230,7 +318,7 @@ export class Menu extends Component {
                         >menu</p>
                     </div>
                 </NavBar>
-                <NavBox>
+                <NavBox active={this.state.active}>
                     <NavContent>
                         <nav className="navLinks">
                             <ul>
@@ -241,6 +329,30 @@ export class Menu extends Component {
                                 <li>contato</li>
                             </ul>
                         </nav>
+                        <div className="socialContainer">
+                            <div className="socialContent">
+                                <ul>
+                                    <li>
+                                        <a href="">
+                                            <FiInstagram size={30} className="icon" />
+                                            <p>@robonaticos7565</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <FiFacebook size={30} className="icon" />
+                                            <p>/robonáticos</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <FiYoutube size={30} className="icon" />
+                                            <p>Robonáticos #7565</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </NavContent>
                 </NavBox>
             </NavContainer>
