@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { FiInstagram, FiYoutube, FiFacebook } from 'react-icons/fi'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
@@ -10,22 +9,42 @@ import colors, { hex2rgb } from '../../res/colors';
 
 import LogoRobonáticos from '../../assets/images/RobonaticosLogo.png'
 
-const backFadeOut = keyframes`
-    from {
-        background: rgba(0, 0, 0, .23);
+const fillUp = keyframes`
+    0%, 60% { width: 0;
+        box-shadow: none }
+    100% { width: 100%; }
+`;
+const opacity = keyframes`
+    from { opacity: 0 }
+    to { opacity: 1 }
+`;
+const slideInLogo = keyframes`
+    0%, 50% {
+        opacity: 0;
+        transform: translateX(-100%);
     }
-    to {
-        background: rgba(0, 0, 0, 0);
+    99% {
+        opacity: 1;
+        transform: translateX(0);
     }
 `;
-
+const slideInBuguer = keyframes`
+    0%, 50% {
+        opacity: 0;
+        transform: translate(-150%, -50%);
+    }
+    99% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+`;
+const backFadeOut = keyframes`
+    from { background: rgba(0, 0, 0, .23); }
+    to { background: rgba(0, 0, 0, 0); }
+`;
 const backFadeIn = keyframes`
-    from {
-        background: rgba(0, 0, 0, 0);
-    }
-    to {
-        background: rgba(0, 0, 0, .23)}
-    }
+    from { background: rgba(0, 0, 0, 0); }
+    to { background: rgba(0, 0, 0, .23); }
 `;
 
 const NavContainer = styled.header`
@@ -66,11 +85,13 @@ const NavBar = styled.div`
     background: ${(props) => props.isTop ? 'transparent' : colors.white};
     transition: all .3s;
     z-index: 2;
+    animation: ${fillUp} 1s;
 
     img {
         width: 5.5rem;
         margin: .5rem auto auto auto;
         transition: all .7s;
+        animation: ${slideInLogo} 2s;
     }
 
     img.active {
@@ -90,6 +111,7 @@ const NavBar = styled.div`
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        animation: ${slideInBuguer} 2s;
 
         .burgerContainer {
             width: 100%;
@@ -288,9 +310,9 @@ export class Menu extends Component {
     render() {
         return (
             <NavContainer >
-                <div 
-                    className={this.state.active ? 'backOpacity active' : 'backOpacity'} 
-                    active={this.state.active} 
+                <div
+                    className={this.state.active ? 'backOpacity active' : 'backOpacity'}
+                    active={this.state.active}
                     onClick={() => this.setState({ active: !this.state.active })}
                 />
                 <NavBar
