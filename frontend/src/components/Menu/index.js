@@ -133,7 +133,6 @@ const NavBar = styled.div`
             .burguerLine {
                 width: 100%;
                 height: 4px;
-                border-radius: 2px;
                 background-color: ${(props) => props.isTop ? colors.white : colors.gray33};
                 transition: all .3s;
             }
