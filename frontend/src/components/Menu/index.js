@@ -15,6 +15,7 @@ const NavContainer = styled.header`
     top: 0;
     width: 7rem;
     height: 100vh;
+    z-index: 1;
 `;
 const NavBar = styled.div`
     width: 100%;
@@ -24,13 +25,20 @@ const NavBar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 -5px 20px rgba(0,0,0,.25);
+    box-shadow: ${(props) => props.isTop ? '0 -5px 20px rgba(0,0,0,.25)' : ''};
     background: ${(props) => props.isTop ? 'transparent' : colors.white};
     transition: all .3s;
 
     img {
         width: 5.5rem;
-        margin: 1rem auto auto auto;
+        margin: .5rem auto auto auto;
+        transition: all .5s;
+        z-index: 2;
+    }
+
+    img.active {
+        width: 15rem;
+        transform: translateX(7.5rem)
     }
 
     .menuContainer {
@@ -53,7 +61,7 @@ const NavBar = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            align-items: center;
+            align-items: flex-start;
 
             .burguerLine {
                 width: 100%;
@@ -64,10 +72,24 @@ const NavBar = styled.div`
                 display: ${(props) => !props.active ? 'block' : 'none'};
             }
 
+            .burguerLine:nth-child(2) {
+                width: 75%;
+            }
+
             .burguerLine.active { background-color: ${colors.gray33}; }
 
+            .burguerLine.active:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
             .burguerLine.active:nth-child(2) {
-                background-color: #FF0000
+                transform: translateX(-100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .burguerLine.active:nth-child(3) {
+                transform: rotate(-45deg) translate(9px, -9px);
             }
         }
 
@@ -75,10 +97,69 @@ const NavBar = styled.div`
             font-size: 16px;
             font-family: 'Roboto Medium', sans-serif;
             color: ${(props) => props.isTop ? colors.white : colors.gray33};
-            transition: all .3s;
+            transition: all .5s;
         }
 
-        p.active { color: ${colors.gray33}; }
+        p.active { opacity: 0 }
+    }
+`;
+const NavBox = styled.div`
+    width: 650px;
+    height: 100%;
+    background: #F0F0F0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-left: 7rem;
+    transition: all .3s;
+`;
+const NavContent = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: relative;
+
+    .navLinks {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: calc(50% + 20px);
+        transform: translate(-50%,-50%);
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+
+            li {
+                color: ${colors.gray33};
+                text-transform: uppercase;
+                text-decoration: none;
+                position: relative;
+                font-size: 50px;
+                cursor: pointer;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    bottom: 50%;
+                    left: -8px;
+                    transform: translateY(50%);
+                    z-index: -1;
+                    width: 0;
+                    overflow: hidden;
+                    height: 30%;
+                    background-color: ${colors.mainYellow};
+                    transition: ease-in-out .3s;
+                }
+
+                &:hover:before {
+                    width: calc(100% + 20px);
+                }
+            }
+        }
     }
 `;
 
@@ -125,11 +206,16 @@ export class Menu extends Component {
     render() {
         return (
             <NavContainer >
-                <NavBar isTop={this.state.isTop}>
-                    <img src={LogoRobonáticos} alt="Robonáricos 7565" />
+                <NavBar
+                    isTop={this.state.isTop}>
+                    <img
+                        className={this.state.active ? 'active' : ''}
+                        src={LogoRobonáticos} 
+                        alt="Robonáricos 7565" 
+                    />
                     <div
                         className="menuContainer"
-                        onClick={() => this.setState({active: !this.state.active})}
+                        onClick={() => this.setState({ active: !this.state.active })}
                     >
                         <div
                             className="burgerContainer"
@@ -138,12 +224,25 @@ export class Menu extends Component {
                             <div isTop={this.state.isTop} className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
                             <div isTop={this.state.isTop} className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
                         </div>
-                        <p 
+                        <p
                             isTop={this.state.isTop}
                             className={this.state.active ? 'active' : ''}
                         >menu</p>
                     </div>
                 </NavBar>
+                <NavBox>
+                    <NavContent>
+                        <nav className="navLinks">
+                            <ul>
+                                <li>sobre</li>
+                                <li>projetos</li>
+                                <li>competições</li>
+                                <li>apoiadores</li>
+                                <li>contato</li>
+                            </ul>
+                        </nav>
+                    </NavContent>
+                </NavBox>
             </NavContainer>
         );
     }
