@@ -243,7 +243,6 @@ const NavContent = styled.div`
             justify-content: center;
 
             li {
-                color: ${colors.gray33};
                 text-transform: uppercase;
                 text-decoration: none;
                 position: relative;
@@ -266,6 +265,10 @@ const NavContent = styled.div`
 
                 &:hover:before {
                     width: calc(100% + 20px);
+                }
+
+                a {
+                    color: ${colors.gray33};
                 }
             }
         }
@@ -450,11 +453,10 @@ export class Menu extends Component {
                     <NavContent>
                         <nav className="navLinks">
                             <ul>
-                                <li>sobre</li>
-                                <li>projetos</li>
-                                <li>competições</li>
-                                <li>apoiadores</li>
-                                <li>contato</li>
+                                <li><Link to='/about'>sobre</Link></li>
+                                <li><Link to='/projects'>projetos</Link></li>
+                                <li><Link to='/competitions'>competições</Link></li>
+                                <li><Link to='/'>contato</Link></li>
                             </ul>
                         </nav>
                         <div className="socialContainer">

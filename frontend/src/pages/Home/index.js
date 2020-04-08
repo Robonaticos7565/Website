@@ -32,6 +32,7 @@ export default class Home extends Component {
                                 <div className="mouse"> <div className="mouseContent" /> </div>
                             </BISectionContent>
                         </BISectionContainer>
+                        
                     </Content>
                 </Container>
             </Window>
