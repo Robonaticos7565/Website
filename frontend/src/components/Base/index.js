@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import colors, { hex2rgb } from '../../res/colors';
 import devices from '../../res/devices';
+
+const mouse = keyframes`
+    0% {
+        opacity: 1;
+        top: 10px;
+    }
+    70% { opacity: 1; }
+    100% {
+        opacity: 0;
+        top: 20px;
+    }
+`;
 
 export const Window = styled.div`
     position: relative;
@@ -27,5 +39,107 @@ export const Container = styled.div`
 export const Content = styled.div`
     width: 100%;
     padding: 0 30px;
+`;
+
+export const BISectionContainer = styled.section`
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(rgba(56,56,55,.5),rgba(44,44,43,.397)), url(${(props) => props.src}) 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+`;
+
+export const BISectionContent = styled.div`
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .txtContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .txtContent {
+            h1 {
+                text-align: center;
+                color: ${colors.white};
+                font-family: 'Montserrat Light';
+                font-size: 60px;
+            }
+        }
+    }
+    
+    .mouse{
+        width: 40px;
+        height: 70px;
+        border: 2px solid ${colors.white};
+        border-radius: 25px;
+        bottom: 5%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        position: absolute;
+
+        .mouseContent {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 15px;
+                border-radius: 5px;
+                background-color: ${colors.white};
+                top: 10px;
+                left: calc(50% - 4px);
+                -webkit-animation: ${mouse} 1.5s infinite;
+                animation: ${mouse} 1.5s infinite;
+            }
+        }
+    }  
+
+    @media ${devices.laptop} {
+        .txtContainer {
+            .txtContent {
+                h1 { font-size: 50px; }
+            }
+        }
+        .mouse {
+            display: none;
+        }
+    }
+
+    @media ${devices.tablet} {
+        .txtContainer {
+            .txtContent {
+                h1 { font-size: 37px; }
+            }
+        }
+    }
+
+    @media ${devices.mobileL} {
+        .txtContainer {
+            .txtContent {
+                h1 { font-size: 27px; }
+            }
+        }
+    }
+
+    @media ${devices.mobileS} {
+        .txtContainer {
+            .txtContent {
+                h1 { font-size: 22px; }
+            }
+        }
+    }
 `;
 
