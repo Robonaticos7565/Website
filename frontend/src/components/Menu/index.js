@@ -463,19 +463,19 @@ export class Menu extends Component {
                             <div className="socialContent">
                                 <ul>
                                     <li>
-                                        <a href="">
+                                        <a href="https://www.instagram.com/robonaticos7565/" target="_blank">
                                             <FiInstagram size={20} className="icon" />
                                             <p>@robonaticos7565</p>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="https://www.facebook.com/robonaticos/" target="_blank">
                                             <FiFacebook size={20} className="icon" />
                                             <p>/robonáticos</p>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="http://www.youtube.com/c/Robonáticos7565" target="_blank">
                                             <FiYoutube size={20} className="icon" />
                                             <p>Robonáticos #7565</p>
                                         </a>
