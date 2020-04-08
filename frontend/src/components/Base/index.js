@@ -38,7 +38,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     width: 100%;
-    padding: 0 30px;
+    padding: 0 20px;
 `;
 
 export const BISectionContainer = styled.section`
@@ -143,3 +143,41 @@ export const BISectionContent = styled.div`
     }
 `;
 
+export const Mask = styled.div`
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+`;
+
+export const Section = styled.section`
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: ${props => props.flexDirection || 'row'};
+    justify-content: ${props => props.justifyContent || 'center'};
+    align-items: ${props => props.alignItems || 'center'};
+
+    @media ${devices.tablet} {
+        flex-direction: ${props => props.flexDirection || 'column'};
+        justify-content: ${props => props.justifyContent || 'center'};
+        align-items: ${props => props.alignItems || 'center'};
+    }
+`;
+
+const DefDiv = styled.div`
+    width: ${props => props.width || '100%'};
+    height: 100%;
+    display: ${props => props.display || 'flex'};
+    flex-direction: ${props => props.flexDirection || 'row'};
+    justify-content: ${props => props.justifyContent || 'center'};
+    align-items: ${props => props.alignItems || 'center'};
+`;
+
+export const OneImageDiv = styled(DefDiv)``;
+
+export const TextDiv = styled(DefDiv)``;
+
+export const Image = styled.img`
+    width: ${props => props.large || '100%'};
+`;
