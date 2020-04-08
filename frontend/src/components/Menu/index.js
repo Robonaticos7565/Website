@@ -6,17 +6,19 @@ import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 import colors, { hex2rgb } from '../../res/colors';
+import devices from '../../res/devices';
 
 import LogoRobonáticos from '../../assets/images/RobonaticosLogo.png'
 
+/** Keyframes */
 const fillUp = keyframes`
     0%, 60% { width: 0;
         box-shadow: none }
     100% { width: 100%; }
 `;
 const opacity = keyframes`
-    from { opacity: 0 }
-    to { opacity: 1 }
+    0%, 50% { opacity: 0 }
+    100% { opacity: 1 }
 `;
 const slideInLogo = keyframes`
     0%, 50% {
@@ -47,6 +49,7 @@ const backFadeIn = keyframes`
     to { background: rgba(0, 0, 0, .23); }
 `;
 
+/** Styles */
 const NavContainer = styled.header`
     position: fixed;
     left: 0;
@@ -72,6 +75,11 @@ const NavContainer = styled.header`
         animation-delay: 1s;
         animation: ${backFadeIn} 1s;
     }
+
+    @media ${devices.laptop} {
+        width: 100%;
+        height: 5rem;
+    }
 `;
 const NavBar = styled.div`
     width: 100%;
@@ -82,7 +90,7 @@ const NavBar = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: ${(props) => !props.isTop ? !props.active ? '0 -5px 20px rgba(0,0,0,.15)' : props.active ? '' : '0 -5px 20px rgba(0,0,0,.15)' : ''};
-    background: ${(props) => props.isTop ? 'transparent' : colors.white};
+    background: ${(props) => props.isTop ? props.active ? colors.white : 'transparent' : colors.white};
     transition: all .3s;
     z-index: 2;
     animation: ${fillUp} 1s;
@@ -95,8 +103,8 @@ const NavBar = styled.div`
     }
 
     img.active {
-        width: 15rem;
-        transform: translateX(7.5rem)
+        width: 13rem;
+        transform: translate(7.5rem)
     }
 
     .menuContainer {
@@ -130,9 +138,7 @@ const NavBar = styled.div`
                 transition: all .3s;
             }
 
-            .burguerLine:nth-child(2) {
-                width: 75%;
-            }
+            .burguerLine:nth-child(2) { width: 75%; }
 
             .burguerLine.active { background-color: ${colors.gray33}; }
 
@@ -160,6 +166,45 @@ const NavBar = styled.div`
 
         p.active { opacity: 0 }
     }
+
+    @media ${devices.laptop} {
+
+        padding: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            margin: 0;
+            animation: ${opacity} 2s;
+        }
+
+        img.active { transform: translate(0, 2rem); }
+        
+        .menuContainer {
+            position: relative;
+            transform: none;
+            top: 0;
+            left: 0;
+            animation: ${opacity} 2s;
+            width: 40px;
+            height: 40px;
+
+            .burgerContainer {
+                align-items: flex-end;
+                height: 32px;
+
+                .burguerLine.active:nth-child(2) { transform: translateX(100%); }
+            }
+
+            p { display: none; }
+        }
+    }
+
+    @media ${devices.tablet} {
+        img { width: 5rem; }
+        img.active { width: 8rem; }
+    }
 `;
 const NavBox = styled.div`
     width: 650px;
@@ -171,6 +216,12 @@ const NavBox = styled.div`
     margin-left: 7rem;
     transform: ${(props) => !props.active ? 'translateX(calc(-100% - 7rem))' : 'translateX(0)'};
     transition: all .7s;
+
+    @media ${devices.laptop} {
+        margin-left: 0;
+        width: 100%;
+        height: 100vh
+    }
 `;
 const NavContent = styled.div`
     width: 100%;
@@ -247,13 +298,9 @@ const NavContent = styled.div`
                         justify-content: center;
                         align-items: center;
 
-                        .icon {
-                            size: 40px
-                        }
-
                         p {
                             font-family: 'Roboto Medium', sans-serif;
-                            font-size: 1.2rem;
+                            font-size: 1.1rem;
                             margin-left: 4px;
                         }
                     }
@@ -261,6 +308,66 @@ const NavContent = styled.div`
 
                 li:nth-child(1) {
                     margin-left: 0;
+                }
+            }
+        }
+    }
+
+    @media ${devices.tablet} {
+        .socialContainer {
+            .socialContent {
+                width: auto;
+                margin-right: auto;
+
+                ul {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+
+                    li { 
+                        margin-left: 0; 
+                        margin-top: 10px; 
+                    }
+                }
+            }
+        }
+    }
+
+    @media ${devices.mobileL} {
+        .navLinks{
+            ul {
+                li {
+                    font-size: 40px;
+                }
+            }
+        }
+
+        .socialContainer {
+            .socialContent {
+                ul {
+                    li { 
+                        p {
+                            font-size: 0.9em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media ${devices.mobileM} {
+        .navLinks{
+            ul {
+                li {
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+    @media ${devices.mobileS} {
+        .navLinks{
+            ul {
+                li {
+                    font-size: 30px;
                 }
             }
         }
@@ -356,19 +463,19 @@ export class Menu extends Component {
                                 <ul>
                                     <li>
                                         <a href="">
-                                            <FiInstagram size={30} className="icon" />
+                                            <FiInstagram size={20} className="icon" />
                                             <p>@robonaticos7565</p>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="">
-                                            <FiFacebook size={30} className="icon" />
+                                            <FiFacebook size={20} className="icon" />
                                             <p>/robonáticos</p>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="">
-                                            <FiYoutube size={30} className="icon" />
+                                            <FiYoutube size={20} className="icon" />
                                             <p>Robonáticos #7565</p>
                                         </a>
                                     </li>
