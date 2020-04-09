@@ -21,6 +21,7 @@ export const Window = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 `;
 
 export const Container = styled.div`
@@ -151,33 +152,61 @@ export const Mask = styled.div`
 
 export const Section = styled.section`
     width: 100%;
-    min-height: 100vh;
+    min-height: 700px;
     padding: 40px;
-    display: flex;
+    position: relative;
+    display: ${props => props.display || 'flex'};
     flex-direction: ${props => props.flexDirection || 'row'};
     justify-content: ${props => props.justifyContent || 'center'};
     align-items: ${props => props.alignItems || 'center'};
 
+    @media ${devices.laptop} {
+        flex-direction: ${props => props.lapFlexDirection || 'column'};
+        justify-content: ${props => props.lapJustifyContent || 'center'};
+        align-items: ${props => props.lapAlignItems || 'center'};
+    }
+
     @media ${devices.tablet} {
-        flex-direction: ${props => props.flexDirection || 'column'};
-        justify-content: ${props => props.justifyContent || 'center'};
-        align-items: ${props => props.alignItems || 'center'};
+        flex-direction: ${props => props.tabFlexDirection || 'column'};
+        justify-content: ${props => props.tabJustifyContent || 'center'};
+        align-items: ${props => props.tabAlignItems || 'center'};
+        padding: 40px 0;
     }
 `;
 
 const DefDiv = styled.div`
     width: ${props => props.width || '100%'};
-    height: 100%;
+    height: ${props => props.height || '100%'};
+    margin: ${props => props.margin || '0'};
     display: ${props => props.display || 'flex'};
     flex-direction: ${props => props.flexDirection || 'row'};
     justify-content: ${props => props.justifyContent || 'center'};
     align-items: ${props => props.alignItems || 'center'};
+
+    @media ${devices.laptop} {
+        width: ${props => props.respWidth || '100%'};
+        margin: ${props => props.respMargin || '0'};
+        flex-direction: ${props => props.lapFlexDirection || 'column'};
+        justify-content: ${props => props.lapJustifyContent || 'center'};
+        align-items: ${props => props.lapAlignItems || 'center'};
+    }
 `;
 
-export const OneImageDiv = styled(DefDiv)``;
+export const OneImageDiv = styled(DefDiv)`
+    margin: ${props => props.margin || '0 0 0 30px'};
+`;
 
 export const TextDiv = styled(DefDiv)``;
 
 export const Image = styled.img`
     width: ${props => props.large || '100%'};
+    margin: ${props => props.margin || '0'};
+
+    @media ${devices.laptop} {
+        width: ${props => props.medium || 'auto'};
+    }
+
+    @media ${devices.tablet} {
+        width: ${props => props.small || 'auto'};
+    }
 `;

@@ -142,7 +142,7 @@ const NavBar = styled.div`
             .burguerLine.active { background-color: ${colors.gray33}; }
 
             .burguerLine.active:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
+                transform: rotate(45deg) translate(7px, 6px);
             }
 
             .burguerLine.active:nth-child(2) {
@@ -152,7 +152,7 @@ const NavBar = styled.div`
             }
 
             .burguerLine.active:nth-child(3) {
-                transform: rotate(-45deg) translate(9px, -9px);
+                transform: rotate(-45deg) translate(10px, -9px);
             }
         }
 
@@ -422,7 +422,7 @@ export class Menu extends Component {
                 <div
                     className={this.state.active ? 'backOpacity active' : 'backOpacity'}
                     active={this.state.active}
-                    onClick={() => this.setState({ active: !this.state.active })}
+                    onClick={() => { this.setState({ active: !this.state.active }); !this.state.active ? this.showTargetElement() : this.hideTargetElement() }}
                 />
                 <NavBar
                     active={this.state.active}
@@ -434,7 +434,7 @@ export class Menu extends Component {
                     />
                     <div
                         className="menuContainer"
-                        onClick={() => this.setState({ active: !this.state.active })}
+                        onClick={() => { this.setState({ active: !this.state.active }); !this.state.active ? this.showTargetElement() : this.hideTargetElement() }}
                     >
                         <div
                             className="burgerContainer"
