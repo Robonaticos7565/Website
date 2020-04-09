@@ -18,7 +18,7 @@ interface Props {
 
 interface State {
     targetElement?: any;
-    active?: boolean;
+    active: boolean;
     isTop: boolean;
 }
 
@@ -87,20 +87,23 @@ export class Menu extends Component<Props, State> {
                         <div
                             className="burgerContainer"
                         >
-                            <div isTop={this.state.isTop} 
+                            <div 
+                            // isTop={this.state.isTop} 
                             className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div isTop={this.state.isTop} 
+                            <div 
+                            // isTop={this.state.isTop} 
                             className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div isTop={this.state.isTop} 
+                            <div 
+                            // isTop={this.state.isTop} 
                             className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
                         </div>
                         <p
-                            isTop={this.state.isTop}
+                            // isTop={this.state.isTop}
                             className={this.state.active ? 'active' : ''}
                         >menu</p>
                     </div>
                 </NavBar>
-                <NavBox active={this.state.active}>
+                <NavBox active={this.state.active} >
                     <NavContent>
                         <nav className="navLinks">
                             <ul>

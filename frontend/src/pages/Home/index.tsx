@@ -85,7 +85,7 @@ export default class Home extends Component {
                             >
                                 <Image 
                                     large='410px'
-                                    medium
+                                    medium=''
                                     small='85%'
                                     src={TeamMember} 
                                     alt="Membro do time"
@@ -153,7 +153,7 @@ export default class Home extends Component {
 /** Function to TypeWritter Effect */
 // ES6 Class
 class TypeWriter {
-    txtElement: string;
+    txtElement: any;
     words: string;
     txt: string;
     wordIndex: number;
@@ -186,7 +186,8 @@ class TypeWriter {
         }
 
         // Insert txt into element
-        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+        let test = this.txtElement as HTMLInputElement
+        test.innerHTML = String(`<span class="txt">${this.txt}</span>`);
 
         // Initial Type Speed
         let typeSpeed = 80;
@@ -214,8 +215,8 @@ class TypeWriter {
 }
 
 // Init App
-function init() {
-    const txtElement = document.querySelector('.txt');
+function init(txtElement?: any):void {
+    txtElement = document.querySelector('.txt');
     const words = JSON.parse(txtElement.getAttribute('data-words'));
     const wait = txtElement.getAttribute('data-wait');
     // Init TypeWriter

@@ -4,8 +4,8 @@ import devices from '../../res/device';
 
 /** Interfaces */
 interface Props {
-    isTop: boolean;
-    active: boolean;
+    isTop?: boolean;
+    active?: boolean;
 }
 
 /** Keyframes */

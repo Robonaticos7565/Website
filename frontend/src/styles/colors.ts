@@ -9,8 +9,8 @@ const colors = {
 
 export default colors;
 
-export function hex2rgb(hex, opacity) {
-    var h=hex.replace('#', '');
+export function hex2rgb(hex: string, opacity: Number) {
+    var h=hex.replace('#', '') as any;
     h =  h.match(new RegExp('(.{'+h.length/3+'})', 'g'));
 
     for(var i=0; i<h.length; i++)

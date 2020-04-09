@@ -14,7 +14,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={dark}>
       <div className="app">
         <GlobalStyle />
         <Routes />
