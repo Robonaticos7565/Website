@@ -23,7 +23,7 @@ import {
     Underline,
 } from '../../components/Text';
 
-import { Button1 } from "../../components/Button";
+import { Button1 } from "../../components/Button/styles";
 
 import { Menu } from '../../components/Menu/';
 

@@ -14,11 +14,11 @@ const fillUp = keyframes`
         box-shadow: none }
     100% { width: 100%; }
 `;
-const opacity = keyframes`
+export const opacity = keyframes`
     0%, 50% { opacity: 0 }
     100% { opacity: 1 }
 `;
-const slideInLogo = keyframes`
+export const slideInLogo = keyframes`
     0%, 50% {
         opacity: 0;
         transform: translateX(-100%);

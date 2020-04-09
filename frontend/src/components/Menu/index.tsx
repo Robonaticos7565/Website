@@ -12,6 +12,8 @@ import {
     NavContent,
 } from './styles';
 
+import Toggle from '../Button/index';
+
 interface Props {
     active?: boolean;
 }
@@ -102,6 +104,7 @@ export class Menu extends Component<Props, State> {
                             className={this.state.active ? 'active' : ''}
                         >menu</p>
                     </div>
+                    <Toggle />
                 </NavBar>
                 <NavBox active={this.state.active} >
                     <NavContent>

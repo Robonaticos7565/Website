@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import Routes from './utils/routes';
 import { ThemeProvider } from 'styled-components';
 import light from './styles/themes/light';
@@ -12,6 +12,8 @@ export default function App() {
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light)
   }
+
+  toggleTheme() = React.
 
   return (
     <ThemeProvider theme={dark}>
