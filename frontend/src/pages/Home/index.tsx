@@ -25,7 +25,7 @@ import {
 
 import { Button1 } from "../../components/Button";
 
-import { Menu } from '../../components/Menu';
+import { Menu } from '../../components/Menu/';
 
 /** Images */
 import Team from '../../assets/images/Team.jpeg';
@@ -50,8 +50,8 @@ export default class Home extends Component {
                         <BISectionContainer src={Team} >
                             <BISectionContent>
                                 <div className="txtContainer">
-                                    <div class="txtContent">
-                                        <h1>Nós<span class="txt" data-wait="1000" data-words='[" Aprendemos", " Ensinamos", " nos Divertimos", " somos STEAM", " fazemos Ciência", " Compartilhamos", " Construimos"]'></span>
+                                    <div className="txtContent">
+                                        <h1>Nós<span className="txt" data-wait="1000" data-words='[" Aprendemos", " Ensinamos", " nos Divertimos", " somos STEAM", " fazemos Ciência", " Compartilhamos", " Construimos"]'></span>
                                         </h1>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@ export default class Home extends Component {
                                 <Button1
                                     fontSize='25px'
                                 >
-                                    <Link>Saiba mais!</Link>
+                                    <Link to='/'>Saiba mais!</Link>
                                 </Button1>
                             </TextDiv>
                             <OneImageDiv
@@ -153,7 +153,14 @@ export default class Home extends Component {
 /** Function to TypeWritter Effect */
 // ES6 Class
 class TypeWriter {
-    constructor(txtElement, words, wait = 300) {
+    txtElement: string;
+    words: string;
+    txt: string;
+    wordIndex: number;
+    wait: any;
+    isDeleting: boolean;
+
+    constructor(txtElement: string, words: string, wait: any = 300) {
         this.txtElement = txtElement;
         this.words = words;
         this.txt = '';

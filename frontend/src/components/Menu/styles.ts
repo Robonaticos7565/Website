@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { FiInstagram, FiYoutube, FiFacebook } from 'react-icons/fi'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { Link } from 'react-router-dom';
-
 import styled, { keyframes } from 'styled-components';
 
-import colors, { hex2rgb } from '../../res/colors';
-import devices from '../../res/devices';
+import devices from '../../res/device';
 
-import LogoRobonáticos from '../../assets/images/RobonaticosLogo.png'
+/** Interfaces */
+interface Props {
+    isTop: boolean;
+    active: boolean;
+}
 
 /** Keyframes */
 const fillUp = keyframes`
@@ -50,7 +48,7 @@ const backFadeIn = keyframes`
 `;
 
 /** Styles */
-const NavContainer = styled.header`
+export const NavContainer = styled.header`
     position: fixed;
     left: 0;
     top: 0;
@@ -81,7 +79,7 @@ const NavContainer = styled.header`
         height: 5rem;
     }
 `;
-const NavBar = styled.div`
+export const NavBar = styled.div<Props>`
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -90,7 +88,7 @@ const NavBar = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: ${(props) => !props.isTop ? !props.active ? '0 -5px 20px rgba(0,0,0,.15)' : props.active ? '' : '0 -5px 20px rgba(0,0,0,.15)' : ''};
-    background: ${(props) => props.isTop ? props.active ? colors.white : 'transparent' : colors.white};
+    background: ${(props) => props.isTop ? props.active ? props.theme.colors.background : 'transparent' : props.theme.colors.background};
     transition: all .3s;
     z-index: 2;
     animation: ${fillUp} 1s;
@@ -133,13 +131,13 @@ const NavBar = styled.div`
             .burguerLine {
                 width: 100%;
                 height: 4px;
-                background-color: ${(props) => props.isTop ? colors.white : colors.gray33};
+                background-color: ${(props) => props.isTop ? props.theme.colors.background : props.theme.colors.secondary};
                 transition: all .3s;
             }
 
             .burguerLine:nth-child(2) { width: 75%; }
 
-            .burguerLine.active { background-color: ${colors.gray33}; }
+            .burguerLine.active { background-color: ${props => props.theme.colors.secondary}; }
 
             .burguerLine.active:nth-child(1) {
                 transform: rotate(45deg) translate(7px, 6px);
@@ -159,7 +157,7 @@ const NavBar = styled.div`
         p {
             font-size: 16px;
             font-family: 'Roboto Medium', sans-serif;
-            color: ${(props) => props.isTop ? colors.white : colors.gray33};
+            color: ${(props) => props.isTop ? props.theme.colors.background : props.theme.colors.secondary};
             transition: all .5s;
         }
 
@@ -205,10 +203,10 @@ const NavBar = styled.div`
         img.active { width: 8rem; }
     }
 `;
-const NavBox = styled.div`
+export const NavBox = styled.div<Props>`
     width: 650px;
     height: 100%;
-    background: ${colors.white};
+    background: ${props => props.theme.colors.background};
     position: fixed;
     left: 0;
     top: 0;
@@ -222,7 +220,7 @@ const NavBox = styled.div`
         height: 100vh
     }
 `;
-const NavContent = styled.div`
+export const NavContent = styled.div`
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -259,7 +257,7 @@ const NavContent = styled.div`
                     width: 0;
                     overflow: hidden;
                     height: 30%;
-                    background-color: ${colors.mainYellow};
+                    background-color: ${props => props.theme.colors.primary};
                     transition: ease-in-out .3s;
                 }
 
@@ -268,7 +266,7 @@ const NavContent = styled.div`
                 }
 
                 a {
-                    color: ${colors.gray33};
+                    color: ${props => props.theme.colors.secondary};
                 }
             }
         }
@@ -295,7 +293,7 @@ const NavContent = styled.div`
                     margin-left: 20px;
 
                     a {
-                        color: ${colors.gray33};
+                        color: ${props => props.theme.colors.secondary};
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -375,117 +373,3 @@ const NavContent = styled.div`
         }
     }
 `;
-
-export class Menu extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            targetElement: null,
-            active: false,
-            isTop: true
-        };
-        this.onScroll = this.onScroll.bind(this);
-    };
-
-    componentWillUnmount() {
-        clearAllBodyScrollLocks();
-    }
-
-    componentDidMount() {
-        document.addEventListener('scroll', () => {
-            const isTop = window.scrollY < 50;
-            if (isTop !== this.state.isTop) {
-                this.onScroll(isTop);
-            }
-        });
-        this.state.targetElement = document.querySelector('body');
-    }
-
-    onScroll(isTop) {
-        this.setState({ isTop });
-    }
-
-    showTargetElement = () => {
-        disableBodyScroll(this.targetElement);
-    };
-
-    hideTargetElement = () => {
-        enableBodyScroll(this.targetElement);
-    }
-
-
-    render() {
-        return (
-            <NavContainer >
-                <div
-                    className={this.state.active ? 'backOpacity active' : 'backOpacity'}
-                    active={this.state.active}
-                    onClick={() => { this.setState({ active: !this.state.active }); !this.state.active ? this.showTargetElement() : this.hideTargetElement() }}
-                />
-                <NavBar
-                    active={this.state.active}
-                    isTop={this.state.isTop}>
-                    <img
-                        className={this.state.active ? 'active' : ''}
-                        src={LogoRobonáticos}
-                        alt="Robonáricos 7565"
-                    />
-                    <div
-                        className="menuContainer"
-                        onClick={() => { this.setState({ active: !this.state.active }); !this.state.active ? this.showTargetElement() : this.hideTargetElement() }}
-                    >
-                        <div
-                            className="burgerContainer"
-                        >
-                            <div isTop={this.state.isTop} className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div isTop={this.state.isTop} className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div isTop={this.state.isTop} className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                        </div>
-                        <p
-                            isTop={this.state.isTop}
-                            className={this.state.active ? 'active' : ''}
-                        >menu</p>
-                    </div>
-                </NavBar>
-                <NavBox active={this.state.active}>
-                    <NavContent>
-                        <nav className="navLinks">
-                            <ul>
-                                <li><Link to='/about'>sobre</Link></li>
-                                <li><Link to='/projects'>projetos</Link></li>
-                                <li><Link to='/competitions'>competições</Link></li>
-                                <li><Link to='/'>contato</Link></li>
-                            </ul>
-                        </nav>
-                        <div className="socialContainer">
-                            <div className="socialContent">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.instagram.com/robonaticos7565/" target="_blank">
-                                            <FiInstagram size={20} className="icon" />
-                                            <p>@robonaticos7565</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.facebook.com/robonaticos/" target="_blank">
-                                            <FiFacebook size={20} className="icon" />
-                                            <p>/robonáticos</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.youtube.com/c/Robonáticos7565" target="_blank">
-                                            <FiYoutube size={20} className="icon" />
-                                            <p>Robonáticos #7565</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </NavContent>
-                </NavBox>
-            </NavContainer>
-        );
-    }
-}

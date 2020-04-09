@@ -1,7 +1,37 @@
 import styled, { keyframes } from 'styled-components';
 
-import colors, { hex2rgb } from '../../res/colors';
-import devices from '../../res/devices';
+import { hex2rgb } from '../../styles/colors';
+import devices from '../../res/device';
+
+/** Interfaces */
+
+interface Props {
+    src?: string;
+
+    width?: string;
+    respWidth?: string;
+    height?: string;
+
+    margin?: string;
+    respMargin?: string;
+
+    display?: string;
+    flexDirection?: string;
+    alignItems?: string;
+    justifyContent?: string;
+
+    lapFlexDirection?: string;
+    lapAlignItems?: string;
+    lapJustifyContent?: string;
+
+    tabFlexDirection?: string;
+    tabAlignItems?: string;
+    tabJustifyContent?: string;
+
+    large?: string;
+    medium?: string;
+    small?: string;
+}
 
 const mouse = keyframes`
     0% {
@@ -42,7 +72,7 @@ export const Content = styled.div`
     padding: 0 20px;
 `;
 
-export const BISectionContainer = styled.section`
+export const BISectionContainer = styled.section<Props>`
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -70,7 +100,7 @@ export const BISectionContent = styled.div`
         .txtContent {
             h1 {
                 text-align: center;
-                color: ${colors.white};
+                color: ${props => props.theme.colors.font};
                 font-family: 'Montserrat Light';
                 font-size: 60px;
             }
@@ -80,7 +110,7 @@ export const BISectionContent = styled.div`
     .mouse{
         width: 40px;
         height: 70px;
-        border: 2px solid ${colors.white};
+        border: 2px solid ${props => props.theme.colors.font};
         border-radius: 25px;
         bottom: 5%;
         left: 50%;
@@ -99,7 +129,7 @@ export const BISectionContent = styled.div`
                 width: 8px;
                 height: 15px;
                 border-radius: 5px;
-                background-color: ${colors.white};
+                background-color: ${props => props.theme.colors.font};
                 top: 10px;
                 left: calc(50% - 4px);
                 -webkit-animation: ${mouse} 1.5s infinite;
@@ -150,7 +180,7 @@ export const Mask = styled.div`
     z-index: -1;
 `;
 
-export const Section = styled.section`
+export const Section = styled.section<Props>`
     width: 100%;
     min-height: 700px;
     padding: 40px;
@@ -174,7 +204,7 @@ export const Section = styled.section`
     }
 `;
 
-const DefDiv = styled.div`
+const DefDiv = styled.div<Props>`
     width: ${props => props.width || '100%'};
     height: ${props => props.height || '100%'};
     margin: ${props => props.margin || '0'};
@@ -192,13 +222,13 @@ const DefDiv = styled.div`
     }
 `;
 
-export const OneImageDiv = styled(DefDiv)`
+export const OneImageDiv = styled(DefDiv)<Props>`
     margin: ${props => props.margin || '0 0 0 30px'};
 `;
 
-export const TextDiv = styled(DefDiv)``;
+export const TextDiv = styled(DefDiv)<Props>``;
 
-export const Image = styled.img`
+export const Image = styled.img<Props>`
     width: ${props => props.large || '100%'};
     margin: ${props => props.margin || '0'};
 

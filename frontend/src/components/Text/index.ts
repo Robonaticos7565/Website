@@ -1,10 +1,17 @@
-import styled from 'styled-components'
-import colors from '../../res/colors';
-import devices from '../../res/devices';
+import styled from 'styled-components';
+import devices from '../../res/device';
+
+/** Interfaces */
+
+interface Props {
+    color?: string;
+    textAlign?: string;
+    lapTextAlign?: string;
+}
 
 export const SecH1 = styled.h1`
     font-family: 'Roboto Black', 'Roboto Bold', sans-serif;
-    color: ${colors.gray33};
+    color: ${props => props.theme.colors.secondary};
     font-size: 70px;
     text-transform: uppercase;
 
@@ -29,9 +36,9 @@ export const SecH1 = styled.h1`
     }
 `;
 
-const DescDef = styled.h2`
+const DescDef = styled.h2<Props>`
     font-family: 'Roboto Bold';
-    color: ${colors.gray33};
+    color: ${props => props.theme.colors.secondary};
     text-align: ${props => props.textAlign || 'left'};
     word-wrap: wrap;
     margin-bottom: 35px;
@@ -94,7 +101,7 @@ export const CompDesc = styled(DescDef)`
     } 
 `;
 
-export const Underline = styled.span`
+export const Underline = styled.span<Props>`
     position: relative;
     z-index: 0;
     display: inline!important;
@@ -109,7 +116,7 @@ export const Underline = styled.span`
         width: 95%;
         overflow: hidden;
         height: 40%;
-        background-color: ${props => props.color || colors.mainYellow};
+        background-color: ${props => props.color || props.theme.colors.primary};
         transition: .5s;
     }
 `;
