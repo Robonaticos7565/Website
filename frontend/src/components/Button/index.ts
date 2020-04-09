@@ -23,7 +23,7 @@ export const DefButton = styled.button<Props>`
     transition: all .3s;
 
     a {
-        color: ${props => props.fontColor || props.theme.colors.background}
+        color: ${props => props.fontColor || props.theme.colors.font}
     }
 
     &:hover {
@@ -35,7 +35,7 @@ export const Button1 = styled(DefButton)`
     background: ${props => props.color || props.theme.colors.primary};
     border: none;
     box-shadow: -7px 7px 0px ${props => props.color ? hex2rgb(props.color, 0.5) : hex2rgb(props.theme.colors.primary, 0.5)};
-    color: ${props => props.color || props.theme.colors.background};
+    color: ${props => props.color || props.theme.colors.font};
 `;
 
 export const Button2 = styled(DefButton)`
