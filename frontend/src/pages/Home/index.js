@@ -16,8 +16,10 @@ import {
 } from '../../components/Base';
 
 import { 
+    SecH1,
     Desc,
     SubDesc, 
+    CompDesc,
     Underline,
 } from '../../components/Text';
 
@@ -27,7 +29,9 @@ import { Menu } from '../../components/Menu';
 
 /** Images */
 import Team from '../../assets/images/Team.jpeg';
-import TeamMember from '../../assets/images/TeamMember.png'
+import TeamMember from '../../assets/images/TeamMember.png';
+import Project1 from '../../assets/images/Project1.png';
+import Project2 from '../../assets/images/Project2.png';
 
 export default class Home extends Component {
 
@@ -42,6 +46,7 @@ export default class Home extends Component {
                 <Container>
                     <Menu />
                     <Content>
+                        {/* Wellcome Section */}
                         <BISectionContainer src={Team} >
                             <BISectionContent>
                                 <div className="txtContainer">
@@ -54,15 +59,19 @@ export default class Home extends Component {
                             </BISectionContent>
                         </BISectionContainer>
                         <Mask />
+
+                        {/* About Section */}
                         <Section>
                             <TextDiv
                                 width='50%'
                                 flexDirection='column'
                                 justifyContent='space-around'
                                 alignItems='flex-start'
+
+                                respWidth='100%'
                             >
                                 <SubDesc>O que é ser Robonático?</SubDesc>
-                                <Desc>Ser Robonático é <Underline>aprender</Underline>, <Underline>aplicar</Underline> e <Underline>divulgar</Underline> conhecimento, sempre de forma <Underline>divertida</Underline>!</Desc>
+                                <Desc>Ser Robonático é <Underline>aprender,</Underline> <Underline>aplicar</Underline> e <Underline>divulgar</Underline> conhecimento, sempre de forma <Underline>divertida!</Underline></Desc>
                                 <SubDesc>Venha conhecer mais sobre nós!</SubDesc>
                                 <Button1
                                     fontSize='25px'
@@ -72,15 +81,67 @@ export default class Home extends Component {
                             </TextDiv>
                             <OneImageDiv
                                 width='50%'
+                                respMargin='50px 0'
                             >
                                 <Image 
-                                    large='500px'
+                                    large='410px'
                                     medium
-                                    small
+                                    small='85%'
                                     src={TeamMember} 
                                     alt="Membro do time"
                                 />
                             </OneImageDiv>
+                        </Section>
+
+                        {/* Projects Section */}
+                        <Section>
+                            <TextDiv
+                                width='50%'
+                                flexDirection='column'
+                                justifyContent='space-around'
+                                alignItems='flex-start'
+                            >
+                                <Desc>Compartilhamos gratuitamente o <Underline>conhecimento,</Underline> porque ele é a chave para a <Underline>mudança</Underline> do jovem e do mundo.</Desc>
+                                <SubDesc>Veja nossos projetos!</SubDesc>
+                                <Button1
+                                    fontSize='25px'
+                                >Saiba mais!</Button1>
+                            </TextDiv>
+                            <OneImageDiv
+                                width='50%'
+                                flexDirection='column'
+                                alignItems='center'
+                                respMargin='50px 0 0 0'
+                                lapJustifyContent='space-between'
+                            >
+                                <Image 
+                                    large='410px'
+                                    medium='460px'
+                                    small='85%'
+                                    src={Project1} 
+                                    alt="Membro do time"
+                                />
+                                <Image 
+                                    large='410px'
+                                    medium='460px'
+                                    small='85%'
+                                    margin='40px'
+                                    src={Project2} 
+                                    alt="Membro do time"
+                                />
+                            </OneImageDiv>
+                        </Section>
+
+                        {/* Competition Section */}
+                        <Section>
+                            <TextDiv
+                                flexDirection='column'
+                            >
+                                <SecH1>Competições</SecH1>
+                                <CompDesc>
+                                    Clique ao lado e saiba mais!
+                                </CompDesc>
+                            </TextDiv>
                         </Section>
                     </Content>
                 </Container>
