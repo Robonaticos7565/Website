@@ -28,6 +28,8 @@ import Toggle from '../../components/Button';
 
 import { Menu } from '../../components/Menu/';
 
+import CompMenu from '../../components/CompMenu';
+
 /** Images */
 import Team from '../../assets/images/Team.jpeg';
 import TeamMember from '../../assets/images/TeamMember.png';
@@ -136,6 +138,7 @@ export default class Home extends Component {
 
                         {/* Competition Section */}
                         <Section>
+                            <CompMenu />
                             <TextDiv
                                 flexDirection='column'
                             >
