@@ -138,15 +138,15 @@ export default class Home extends Component {
 
                         {/* Competition Section */}
                         <Section>
-                            <CompMenu />
                             <TextDiv
                                 flexDirection='column'
                             >
                                 <SecH1>Competições</SecH1>
                                 <CompDesc>
-                                    Clique ao lado e saiba mais!
+                                    Clique e saiba mais!
                                 </CompDesc>
                             </TextDiv>
+                            <CompMenu />
                         </Section>
                     </Content>
                 </Container>

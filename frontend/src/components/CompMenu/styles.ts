@@ -20,10 +20,11 @@ export const Container = styled.div`
     box-shadow: 0 0 20px 5px rgba(0,0,0,.15);
 
     @media ${devices.laptop} {
+        position: relative;
         width:auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
     }
 `;
 
@@ -43,7 +44,7 @@ export const NavBar = styled.div`
 
     @media ${devices.laptop} {
         width: 300px;
-        height: auto;
+        height: 100%;
     }
 `;
 
@@ -81,9 +82,7 @@ export const Exit = styled.div`
     left: 20px;
     width: 30px;
     height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
     cursor: pointer;
 
     ${ExitContent} {
