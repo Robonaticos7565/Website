@@ -15,15 +15,16 @@ import {
     Image
 } from '../../components/Base';
 
-import { 
+import {
     SecH1,
     Desc,
-    SubDesc, 
+    SubDesc,
     CompDesc,
     Underline,
 } from '../../components/Text';
 
 import { Button1 } from "../../components/Button/styles";
+import Toggle from '../../components/Button';
 
 import { Menu } from '../../components/Menu/';
 
@@ -44,6 +45,7 @@ export default class Home extends Component {
         return (
             <Window>
                 <Container>
+                    <Toggle />
                     <Menu />
                     <Content>
                         {/* Wellcome Section */}
@@ -83,11 +85,11 @@ export default class Home extends Component {
                                 width='50%'
                                 respMargin='50px 0'
                             >
-                                <Image 
+                                <Image
                                     large='410px'
                                     medium=''
                                     small='85%'
-                                    src={TeamMember} 
+                                    src={TeamMember}
                                     alt="Membro do time"
                                 />
                             </OneImageDiv>
@@ -114,19 +116,19 @@ export default class Home extends Component {
                                 respMargin='50px 0 0 0'
                                 lapJustifyContent='space-between'
                             >
-                                <Image 
+                                <Image
                                     large='410px'
                                     medium='460px'
                                     small='85%'
-                                    src={Project1} 
+                                    src={Project1}
                                     alt="Membro do time"
                                 />
-                                <Image 
+                                <Image
                                     large='410px'
                                     medium='460px'
                                     small='85%'
                                     margin='40px'
-                                    src={Project2} 
+                                    src={Project2}
                                     alt="Membro do time"
                                 />
                             </OneImageDiv>
@@ -215,7 +217,7 @@ class TypeWriter {
 }
 
 // Init App
-function init(txtElement?: any):void {
+function init(txtElement?: any): void {
     txtElement = document.querySelector('.txt');
     const words = JSON.parse(txtElement.getAttribute('data-words'));
     const wait = txtElement.getAttribute('data-wait');

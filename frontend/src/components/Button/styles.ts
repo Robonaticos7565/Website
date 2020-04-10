@@ -79,10 +79,11 @@ const angleReverse = keyframes`
 // Style
 
 export const Toggle = styled.div`
-    position: absolute;
-    left:50%;
-    bottom: 30px;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
     animation: ${slideInLogo} 2s;
+    z-index: 5;
 
     .toogleBody {
         width: 3rem;
@@ -121,6 +122,8 @@ export const Toggle = styled.div`
     }
 
     @media ${devices.laptop} {
-        display: none;
+        right: 50px;
+        bottom: 30px;
+        animation: ${opacity} 2s;
     }
 `;

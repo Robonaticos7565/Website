@@ -59,6 +59,7 @@ export const Window = styled.div`
 export const Container = styled.div`
     width: 100%;
     max-width: 1500px;
+    position: relative;
     padding-left: 7rem;
     padding-top: 0;
     margin: 0 auto;
