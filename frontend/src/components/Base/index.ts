@@ -53,6 +53,7 @@ export const Window = styled.div`
     align-items: center;
     overflow: hidden;
     background: ${props => props.theme.colors.background};
+    transition: all .8s;
 `;
 
 export const Container = styled.div`
@@ -62,6 +63,8 @@ export const Container = styled.div`
     padding-top: 0;
     margin: 0 auto;
     background: ${props => props.theme.colors.background};
+    transition: all .8s;
+
 
     @media ${devices.laptop} {
         padding-left: 0;
@@ -73,6 +76,7 @@ export const Content = styled.div`
     width: 100%;
     padding: 0 20px;
     background: ${props => props.theme.colors.background};
+    transition: all .8s;
 `;
 
 export const BISectionContainer = styled.section<Props>`
@@ -193,6 +197,8 @@ export const Section = styled.section<Props>`
     justify-content: ${props => props.justifyContent || 'center'};
     align-items: ${props => props.alignItems || 'center'};
     background: ${props => props.theme.colors.background};
+    transition: all .8s;
+
 
     @media ${devices.laptop} {
         flex-direction: ${props => props.lapFlexDirection || 'column'};

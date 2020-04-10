@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext, useEffect } from 'react';
 import { Toggle } from './styles';
 
-const ToggleBtn: React.FC = () => {
+import { ThemeContext } from '../../App';
 
+const ToggleBtn: React.FC = () => {
     const [active, setActive] = useState(false);
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
+    useEffect(() => {
+        if (theme.title === 'dark') {
+            setActive(false);
+        } else {
+            setActive(true);
+        }
+    });
 
     const toggle = () => {
         setActive(!active);
@@ -12,7 +22,7 @@ const ToggleBtn: React.FC = () => {
 
     return(
         <Toggle
-            onClick={() => toggle()}
+            onClick={() => {toggleTheme(); toggle()}}
         >
             <div className={active ? "toogleBody active" : "toogleBody"}>
                 <div className={active ? "toggleBtn active" : "toggleBtn"}></div>

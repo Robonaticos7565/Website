@@ -24,7 +24,7 @@ export const DefButton = styled.button<Props>`
     font-size: ${props => props.fontSize};
     line-height: calc(100% + 15%) ;
     border-radius: 5px;
-    transition: all .3s;
+    transition: all .8s;
 
     a {
         color: ${props => props.fontColor || props.theme.colors.font}
@@ -92,7 +92,7 @@ export const Toggle = styled.div`
         left: calc(50% - 3rem / 2);
         background: ${props => props.theme.colors.secondary};
         border-radius: 2rem;
-        animation: ${angleReverse} 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+        animation: ${angleReverse} .8s cubic-bezier(0.68, -0.15, 0.265, 1.35);
         cursor: pointer;
 
         .toggleBtn {
@@ -106,17 +106,17 @@ export const Toggle = styled.div`
             background: ${props => props.theme.colors.primary};
             cursor: pointer;
             transform: translateX(0);
-            transition: 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+            transition: .8s cubic-bezier(0.68, -0.15, 0.265, 1.35);
         }
 
         .toggleBtn.active {
-            transition: 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+            transition: .8s cubic-bezier(0.68, -0.15, 0.265, 1.35);
             transform:  translateX(150%);
         }
     }
 
     .toogleBody.active {
-        animation: ${angle} 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+        animation: ${angle} .8s cubic-bezier(0.68, -0.15, 0.265, 1.35);
         animation-direction: alternate;
     }
 

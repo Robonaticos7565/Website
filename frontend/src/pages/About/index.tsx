@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import styled from 'styled-components';
+import {ThemeContext} from '../../App'; 
+
+import { Button1 } from '../../components/Button/styles';
 
 export default function About() {
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
     return (
-        <h1>About</h1>
+        <Button1 onClick={toggleTheme} ></Button1>
     );
 }

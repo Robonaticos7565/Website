@@ -14,6 +14,7 @@ export const SecH1 = styled.h1`
     color: ${props => props.theme.colors.secondary};
     font-size: 70px;
     text-transform: uppercase;
+    transition: all .8s;
 
     @media ${devices.laptop} {
         font-size: 65px
@@ -42,6 +43,7 @@ const DescDef = styled.h2<Props>`
     text-align: ${props => props.textAlign || 'left'};
     word-wrap: wrap;
     margin-bottom: 35px;
+    transition: all .8s;
 
     @media ${devices.laptop} {
         text-align: ${props => props.lapTextAlign || 'center'};

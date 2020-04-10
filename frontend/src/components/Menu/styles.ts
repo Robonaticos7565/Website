@@ -92,6 +92,7 @@ export const NavBar = styled.div<Props>`
     transition: all .3s;
     z-index: 2;
     animation: ${fillUp} 1s;
+    transition: all .8s;
 
     img {
         width: 5.5rem;
@@ -131,7 +132,7 @@ export const NavBar = styled.div<Props>`
             .burguerLine {
                 width: 100%;
                 height: 4px;
-                background-color: ${(props) => props.isTop ? props.theme.colors.background : props.theme.colors.secondary};
+                background-color: ${(props) => props.isTop ? props.theme.title === 'dark' ? '#FFFFFF' : props.theme.colors.background : props.theme.colors.secondary};
                 transition: all .3s;
             }
 
@@ -157,7 +158,7 @@ export const NavBar = styled.div<Props>`
         p {
             font-size: 16px;
             font-family: 'Roboto Medium', sans-serif;
-            color: ${(props) => props.isTop ? props.theme.colors.background : props.theme.colors.secondary};
+            color:  ${(props) => props.isTop ? props.theme.title === 'dark' ? '#FFFFFF' : props.theme.colors.background : props.theme.colors.secondary};
             transition: all .5s;
         }
 
