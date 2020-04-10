@@ -112,7 +112,7 @@ export const Toggle = styled.div`
 
         .toggleBtn.active {
             transition: .8s cubic-bezier(0.68, -0.15, 0.265, 1.35);
-            transform:  translateX(150%);
+            transform:  translateX(100%);
         }
     }
 
