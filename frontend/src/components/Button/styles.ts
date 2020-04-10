@@ -18,6 +18,7 @@ type PropsType = {
 }
 
 export const DefButton = styled.button<Props>`
+    position: relative;
     padding: 15px 30px;
     cursor: pointer;
     font-family: 'Roboto Bold';
@@ -46,6 +47,21 @@ export const Button2 = styled(DefButton)`
     background: transparent;
     color: ${props => props.color || props.theme.colors.primary};
     border: 1px solid ${props => props.color || props.theme.colors.primary};
+    box-sizing: content-box;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: -5px;
+        width: 100%;
+        height: 100%;
+        border: 1px solid ${({ theme }) => theme.colors.secondary};
+        border-radius: 5px;
+        z-index: 0;
+    }
 `;
 
 /** Switch Button */
