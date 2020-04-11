@@ -84,22 +84,22 @@ export const SubDesc = styled(DescDef)`
 `;
 
 export const CompDesc = styled(DescDef)`
-    font-size: 28px;
+    font-size: 23px;
 
     @media ${devices.laptop} {
-        font-size: 25px
+        font-size: 20px
     }
 
     @media ${devices.tablet} {
-        font-size: 22px
+        font-size: 18px
     }
 
     @media ${devices.mobileL} {
-        font-size: 20px
+        font-size: 16px
     }  
 
     @media ${devices.mobileM} {
-        font-size: 18px
+        font-size: 14px
     } 
 `;
 
@@ -107,6 +107,7 @@ export const Underline = styled.span<Props>`
     position: relative;
     z-index: 0;
     display: inline!important;
+    white-space: nowrap;
     
     font-family: 'Roboto Bold';
     &:after {
@@ -121,4 +122,12 @@ export const Underline = styled.span<Props>`
         background-color: ${props => props.color || props.theme.colors.primary};
         transition: .5s;
     }
+`;
+
+export const CompNumber = styled.h3<Props>`
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 70px;
+    color: ${({ theme, color }) => color || theme.colors.primary};
+    text-align: ${props => props.textAlign || 'left'};
+    text-shadow: 3px 2px 0px ${({ theme }) => theme.colors.secondary};
 `;
