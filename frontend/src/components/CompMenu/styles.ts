@@ -14,6 +14,12 @@ interface ImgContainerProps {
     active?: boolean;
 }
 
+interface Image {
+    active?: boolean;
+    comp?: number;
+    id?: string;
+}
+
 interface CompImgContentProps {
     src?: string;
 }
@@ -39,11 +45,15 @@ export const Container = styled.div<ContainerProps>`
         /* position: ${({ active }) => active ? 'absolute' : 'relative'}; */
         position: relative;
         width: ${({ active }) => active ? '100%' : 'auto'};
-        height: ${({ active }) => active ? '950px' : '600px'};
+        height: ${({ active }) => active ? '950px' : '550px'};
         top: 0;
         left: 0;
         transform: translate(0, 0);
         border-radius: 16px;
+    }
+
+    @media ${devices.tablet} {
+
     }
 `;
 
@@ -65,14 +75,23 @@ export const NavBar = styled.div<ContainerProps>`
     width: 20%;
     height: 100%;
     background: ${({ theme }) => theme.colors.background};
-    transition: all .5s;
 
     @media ${devices.laptop} {
         width: ${({ active }) => active ? '100%' : '250px'};
-        /* width: 100%;
-        padding: 30px; */
-        height: ${({ active }) => active ? '90px' : '100%'};
+        height: ${({ active }) => active ? '125px' : '100%'};
     }
+
+    @media ${devices.tablet} {
+        height: ${({ active }) => active ? '100px' : '100%'};
+    }
+
+    @media ${devices.mobileL} {
+        width: ${({ active }) => active ? '100%' : '200px'};
+    }
+`;
+
+export const Image = styled.img<Image>`
+    filter: ${({ active, comp, id }) => active && comp == id ? 'none' : 'grayscale(100%)'};
 `;
 
 export const ImgContainer = styled.div<ImgContainerProps>`
@@ -83,7 +102,6 @@ export const ImgContainer = styled.div<ImgContainerProps>`
     justify-content: space-around;
     align-items: center;
     transition: all .5s;
-    /* filter: grayscale(100%); */
 
     .imgContent {
         height: 100px;
@@ -92,8 +110,8 @@ export const ImgContainer = styled.div<ImgContainerProps>`
         align-items: center;
         cursor: pointer;
 
-        img {
-            width: 100%;
+        ${Image} {
+            width: 120px;
             height: auto;
         }
     }
@@ -102,8 +120,40 @@ export const ImgContainer = styled.div<ImgContainerProps>`
         flex-direction: ${({ active }) => active ? 'row' : 'column'};
 
         .imgContent {
-            img{
-                width: ${({ active }) => active ? '80px' : 'auto'};
+            ${Image}{
+                width: ${({ active }) => active ? '100px' : '120px'};
+            }
+        }
+    }
+
+    @media ${devices.tablet} {
+        .imgContent {
+            ${Image}{
+                width: ${({ active }) => active ? '80px' : '110px'};
+            }
+        }
+    }
+    
+    @media ${devices.mobileL} {
+        .imgContent {
+            ${Image}{
+                width: ${({ active }) => active ? '70px' : '110px'};
+            }
+        }
+    }
+
+    @media ${devices.mobileM} {
+        .imgContent {
+            ${Image}{
+                width: ${({ active }) => active ? '65px' : '110px'};
+            }
+        }
+    }
+
+    @media ${devices.mobileS} {
+        .imgContent {
+            ${Image}{
+                width: ${({ active }) => active ? '50px' : '110px'};
             }
         }
     }
@@ -145,6 +195,16 @@ export const Exit = styled.div<ContainerProps>`
             transform: rotate(-45deg)
         }
     }
+
+    @media ${devices.tablet} {
+        width: 25px;
+        height: 25px;
+    }
+
+    @media ${devices.tablet} {
+        width: 20px;
+        height: 20px;
+    }
 `;
 
 export const Comp = styled.div<ContainerProps>`
@@ -155,7 +215,9 @@ export const Comp = styled.div<ContainerProps>`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-left: 8px solid ${({ color, theme }) => color || theme.colors.primary};
+    border-left: 8px solid;
+    border-left-color: ${({ color, theme }) => color || theme.colors.primary};
+    transition: border-left-color .5s;
     
     @media ${devices.laptop} {
         display: ${({ active }) => active ? 'block' : 'none'};
@@ -164,6 +226,7 @@ export const Comp = styled.div<ContainerProps>`
         width: 100%;
         height: calc(100% - 90px);
         padding: 20px 0 0 0;
+        justify-content: center;
     }
 `;
 
@@ -178,6 +241,15 @@ export const CompText = styled.div`
     @media ${devices.laptop} {
         height: 27%;
     }
+
+    @media ${devices.tablet} {
+        height: 35%;
+        margin-bottom: 30px;
+    }
+
+    @media ${devices.mobileM} {
+        height: 27%;
+    }
 `;
 
 export const CompImgContent = styled.div<CompImgContentProps>`
@@ -187,18 +259,30 @@ export const CompImgContent = styled.div<CompImgContentProps>`
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    background: url(${({ src }) => src}) left center;
+    background: url(${({ src }) => src}) left bottom;
     background-repeat: no-repeat;
     background-size: cover;
     filter: grayscale(100%);
 
     @media ${devices.laptop} {
-        width: 100%;
+        width: 80%;
         height: auto;
         border-radius: 0;
         position: relative;
         bottom: 0;
         right: 0;
+        background: url(${({ src }) => src}) center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    @media ${devices.laptop} {
+        width: 100%;
+        height: auto;
+    }
+
+    @media ${devices.mobileM} {
+        height: 58%;
     }
 `;
 
@@ -211,7 +295,13 @@ export const CompImg = styled.div`
 
     @media ${devices.laptop} {
         width: 100%;
-        height: 40%;
+        height: 80%;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    @media ${devices.mobileM} {
+        margin-top: 0;
     }
 `;
 
@@ -233,7 +323,17 @@ export const CompNumbers = styled.div`
 
     @media ${devices.laptop} {
         width: 100%;
-        height: 30%;
+        height: 15%;
+        flex-direction: row;
+    }
+
+    @media ${devices.tablet} {
+        height:30%;
+    }
+
+    @media ${devices.mobileL} {
+        flex-direction: column;
+        height: 80%;
     }
 `;
 
@@ -247,7 +347,11 @@ export const CompData = styled.div`
     @media ${devices.laptop} {
         margin-top: 40px;
         flex-direction: column;
-        height: 73%;
-        justify-content: space-around;
+        height: calc(100% - (125px + 27%));
+        justify-content: center;
+    }
+
+    @media ${devices.mobileM} {
+        height: 80%;
     }
 `;

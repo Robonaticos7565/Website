@@ -7,6 +7,7 @@ interface Props {
     color?: string;
     textAlign?: string;
     lapTextAlign?: string;
+    data?: string;
 }
 
 export const SecH1 = styled.h1`
@@ -125,9 +126,11 @@ export const Underline = styled.span<Props>`
 `;
 
 export const CompNumber = styled.h3<Props>`
+    position: relative;
     font-family: 'Roboto Black', sans-serif;
     font-size: 70px;
     color: ${({ theme, color }) => color || theme.colors.primary};
     text-align: ${props => props.textAlign || 'left'};
-    text-shadow: 3px 2px 0px ${({ theme }) => theme.colors.secondary};
+    text-shadow: -1px 0 ${({ theme }) => theme.colors.secondary}, 0 1px ${({ theme }) => theme.colors.secondary}, 1px 0 ${({ theme }) => theme.colors.secondary}, 0 -1px ${({ theme }) => theme.colors.secondary};
+    transition: all .8s;
 `;

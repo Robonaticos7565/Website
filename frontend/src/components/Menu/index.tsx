@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import LogoRobonaticos from '../../assets/images/RobonaticosLogo.png';
 
-import { 
+import {
     NavContainer,
     NavBar,
     NavBox,
@@ -26,7 +26,7 @@ export class Menu extends Component<Props, State> {
 
     state: State;
 
-    constructor(props : Props) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -74,12 +74,15 @@ export class Menu extends Component<Props, State> {
                 />
                 <NavBar
                     active={this.state.active}
-                    isTop={this.state.isTop}>
-                    <img
-                        className={this.state.active ? 'active' : ''}
-                        src={LogoRobonaticos}
-                        alt="Robonáricos 7565"
-                    />
+                    isTop={this.state.isTop}
+                    >
+                    <Link to='/'>
+                        <img
+                            className={this.state.active ? 'active' : ''}
+                            src={LogoRobonaticos}
+                            alt="Robonáricos 7565"
+                        />
+                    </Link>
                     <div
                         className="menuContainer"
                         onClick={() => { this.setState({ active: !this.state.active }); !this.state.active ? this.showTargetElement() : this.hideTargetElement() }}
@@ -87,15 +90,15 @@ export class Menu extends Component<Props, State> {
                         <div
                             className="burgerContainer"
                         >
-                            <div 
-                            // isTop={this.state.isTop} 
-                            className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div 
-                            // isTop={this.state.isTop} 
-                            className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
-                            <div 
-                            // isTop={this.state.isTop} 
-                            className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
+                            <div
+                                // isTop={this.state.isTop} 
+                                className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
+                            <div
+                                // isTop={this.state.isTop} 
+                                className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
+                            <div
+                                // isTop={this.state.isTop} 
+                                className={this.state.active ? 'burguerLine active' : 'burguerLine'}></div>
                         </div>
                         <p
                             // isTop={this.state.isTop}

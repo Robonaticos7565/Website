@@ -78,6 +78,7 @@ export const Content = styled.div`
     padding: 0 20px;
     background: ${props => props.theme.colors.background};
     transition: all .8s;
+    overflow-x: hidden; 
 `;
 
 export const BISectionContainer = styled.section<Props>`
