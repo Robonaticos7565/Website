@@ -14,7 +14,7 @@ const Main: React.FC = ({ children }) => {
     return (
         <Window>
             <Container>
-                {/* <Toggle /> */}
+                <Toggle />
                 <Menu />
                 <Content>
                     {children}
