@@ -168,7 +168,7 @@ export const NavBar = styled.div<Props>`
     @media ${devices.laptop} {
 
         padding: 10px;
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
 
@@ -188,12 +188,7 @@ export const NavBar = styled.div<Props>`
             width: 40px;
             height: 40px;
 
-            .burgerContainer {
-                align-items: flex-end;
-                height: 32px;
-
-                .burguerLine.active:nth-child(2) { transform: translateX(100%); }
-            }
+            .burgerContainer { height: 32px; }
 
             p { display: none; }
         }
