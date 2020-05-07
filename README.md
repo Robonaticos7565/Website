@@ -64,10 +64,10 @@ To clone the project, use the commands bellow:
 
 ```bash
   # Clone the repository
-  ❯ git clone https://github.com/MathPSantos/BeTheHero.git
+  ❯ git clone https://github.com/Robonaticos7565/Website.git
 
   # Enter directory
-  ❯ cd BeTheHero
+  ❯ cd Website
 ```
 
 ### Frontend
