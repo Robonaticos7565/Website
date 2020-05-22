@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from 'react';
-import styled from 'styled-components';
-import {ThemeContext} from '../../App'; 
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../utils/ThemeProvider/';
 
 import { Button1 } from '../../components/Button/styles';
 
