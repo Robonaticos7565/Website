@@ -3,13 +3,13 @@ import Routes from './routes/routes';
 
 import GlobalStyle from './styles/global';
 
-import { ThemeProviderTest } from './utils/ThemeProvider/';
+import { ThemeContextProvider } from './contexts/theme';
 
 export default function App() {
   return (
-    <ThemeProviderTest>
+    <ThemeContextProvider>
       <GlobalStyle />
       <Routes />
-    </ThemeProviderTest>
+    </ThemeContextProvider>
   );
-}
+};

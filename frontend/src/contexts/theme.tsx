@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import light from '../../styles/themes/light';
-import dark from '../../styles/themes/dark';
-import { ThemeProvider, DefaultTheme } from 'styled-components'
-import usePersistedState from '../../utils/usePersistedState';
+import React from "react";
+import { ThemeProvider, DefaultTheme } from 'styled-components';
+
+import usePersistedState from '../hooks/usePersistedState';
+
+import light from '../styles/themes/light';
+import dark from '../styles/themes/dark';
 
 type Theme = any;
-type ThemeContext = { theme: Theme ,toggleTheme: () => void };
+type ThemeContext = { theme: Theme, toggleTheme: () => void };
 
 export const ThemeContext = React.createContext<ThemeContext>(
     {} as ThemeContext
 );
 
-export const ThemeProviderTest: React.FC = ({ children }) => {
+export const ThemeContextProvider: React.FC = ({ children }) => {
     const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
 
     const toggleTheme = () => {
@@ -20,11 +22,11 @@ export const ThemeProviderTest: React.FC = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <ThemeProvider theme={theme} >
+            <ThemeProvider theme={theme}>
                 {children}
             </ThemeProvider>
         </ThemeContext.Provider>
     );
 };
 
-export default ThemeProviderTest;
+export default ThemeContextProvider;
