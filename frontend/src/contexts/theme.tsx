@@ -3,8 +3,7 @@ import { ThemeProvider, DefaultTheme } from 'styled-components';
 
 import usePersistedState from '../hooks/usePersistedState';
 
-import light from '../styles/themes/light';
-import dark from '../styles/themes/dark';
+import { dark, light } from '../styles/themes/';
 
 type Theme = any;
 type ThemeContext = { theme: Theme, toggleTheme: () => void };

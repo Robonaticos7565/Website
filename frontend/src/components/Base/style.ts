@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { hex2rgb } from '../../styles/colors';
+import { hex2rgb } from '../../styles/themes/colors';
 import devices from '../../res/device';
 
 /** Interfaces */
