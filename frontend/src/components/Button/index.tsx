@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Toggle } from './styles';
 
-import { ThemeContext } from '../../App';
+import { ThemeContext } from '../../utils/ThemeProvider/';
 
 const ToggleBtn: React.FC = () => {
     const [active, setActive] = useState(false);
 
     const { theme, toggleTheme } = useContext(ThemeContext);
+
+    console.log(theme.title)
 
     useEffect(() => {
         if (theme.title === 'dark') {
